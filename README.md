@@ -1,0 +1,2 @@
+# genregmac
+register machine generation
