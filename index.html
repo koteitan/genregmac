@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>pentation maze</title>
+    <title>generate register machine</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -14,6 +14,8 @@
         font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
       }
       body {
+        background-color: #000000;
+        color: #ffffff;
         font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
         touch-action: manipulation;
         user-select: none;
@@ -21,6 +23,12 @@
         -ms-user-select: none;
         -moz-user-select: none;
       }
+      textarea {
+        background-color: #333333;
+        color: #ffffff;
+      }
+      a:link { color: #cccccc; }
+      a:visited { color: #aaaaaa; }
       .container {
         display: flex;
         flex-wrap: wrap;
@@ -37,64 +45,11 @@
 </head>
 <body><form id="form0">
 
-<h1>pentation maze</h1>
-<textarea id="debug" rows="10" cols="50" style="display:none;"></textarea>
-<div class="container">
-  <div class="item">
-    <canvas id="canout" width="400" height="400" style="border:1px solid #000;"></canvas><br>
-    <button id="reset" type=button>reset</button> or key 'r' 
-    <button id="proceed" type=button>proceed</button> or space key<br>
-    zoom in/out by mouse wheel or pinch in/out<br>
-    move view by drag or swipe<br>
-    select block by click or tap<br>
-  </div>
-  <div class="item">
-    <canvas id="canin"  width="400" height="400" style="border:1px solid #000;"></canvas>
-    <br>
-    <table>
-      <tr>
-        <td><input type="radio" name="kinds" value="diag"         ></td><td class=kindtd id=kinddiag   >diag   </td>
-        <td><input type="radio" name="kinds" value="2"            ></td><td class=kindtd id=kind2      >2      </td>
-        <td><input type="radio" name="kinds" value="3"            ></td><td class=kindtd id=kind3      >3      </td>
-        <td><input type="radio" name="kinds" value="5"            ></td><td class=kindtd id=kind5      >5      </td>
-        <td><input type="radio" name="kinds" value="7"            ></td><td class=kindtd id=kind7      >7      </td>
-      </tr>                                                                                            
-      <tr>                                                                                             
-        <td><input type="radio" name="kinds" value="11"           ></td><td class=kindtd id=kind11     >11     </td>
-        <td><input type="radio" name="kinds" value="13"           ></td><td class=kindtd id=kind13     >13     </td>
-        <td><input type="radio" name="kinds" value="17"           ></td><td class=kindtd id=kind17     >17     </td>
-        <td><input type="radio" name="kinds" value="19"           ></td><td class=kindtd id=kind19     >19     </td>
-      </tr>                                                                                            
-      <tr>                                                                                             
-        <td><input type="radio" name="kinds" value="amp3"         ></td><td class=kindtd id=kindamp3   >amp3   </td>
-        <td><input type="radio" name="kinds" value="amp5"         ></td><td class=kindtd id=kindamp5   >amp5   </td>
-        <td><input type="radio" name="kinds" value="amp7"         ></td><td class=kindtd id=kindamp7   >amp7   </td>
-        <td><input type="radio" name="kinds" value="amp9"         ></td><td class=kindtd id=kindamp9   >amp9   </td>
-        <td><input type="radio" name="kinds" value="amp13"        ></td><td class=kindtd id=kindamp13  >amp13  </td>
-      </tr>                                                                                            
-      <tr>                                                                                             
-        <td><input type="radio" name="kinds" value="amp17"        ></td><td class=kindtd id=kindamp17  >amp17  </td>
-        <td><input type="radio" name="kinds" value="amp19"        ></td><td class=kindtd id=kindamp19  >amp19  </td>
-        <td><input type="radio" name="kinds" value="amp25"        ></td><td class=kindtd id=kindamp25  >amp25  </td>
-        <td><input type="radio" name="kinds" value="amp49"        ></td><td class=kindtd id=kindamp49  >amp49  </td>
-        <td><input type="radio" name="kinds" value="amp121"       ></td><td class=kindtd id=kindamp121 >amp121 </td>
-      </tr>                                                                                            
-      <tr>                                                                                             
-        <td><input type="radio" name="kinds" value="bottom"       ></td><td class=kindtd id=kindbottom >bottom </td>
-        <td><input type="radio" name="kinds" value="start" checked></td><td class=kindtd id=kindstart  >start  </td>
-        <td><input type="radio" name="kinds" value="goal"         ></td><td class=kindtd id=kindgoal   >goal   </td>
-        <td><input type="radio" name="kinds" value="thru"         ></td><td class=kindtd id=kindthru   >thru   </td>
-      </tr>
-    </table>
-    <input type="checkbox" id="fixsizecheck">fix size
-    <input type="number" id="fixsizenum">
-    <input type="button" id="fixsizebutton" value="apply">
-    <input type="button" id="save" value="save image"></button>
-  </div>
-</div>
+<h1>generate register machine</h1>
+<textarea id="debug" rows="100" cols="100">x</textarea>
 
-<address id="address">pentation maze: version v1.0+<span id="jsversion"></span><br>
-programmed by <a href='https://twitter.com/koteitan'>koteitan</a> code at <a href='https://github.com/koteitan/pentamaze/'>github</a><br>
+<address id="address">version v0.1+<span id="jsversion"></span><br>
+programmed by <a href='https://twitter.com/koteitan'>koteitan</a> code at <a href='https://github.com/koteitan/genregmac/'>github</a><br>
 </address>
 <script src="main.js"></script>
 </form></body></html>
