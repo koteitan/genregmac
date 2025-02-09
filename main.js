@@ -25,7 +25,10 @@ const sprintf = function(fmt, ...args){
       s = s.substring(0,p)+"%"+s.substring(p+2);
     }else if(c == 'd'){
       const v = args[i++];
-      const padstr = ' '.repeat(digits-String(v).length);
+      let padstr = '';
+      if(digits > String(v).length){
+        padstr = ' '.repeat(digits-String(v).length);
+      }
       const sign = isplus && v >= 0 ? '+' : '';
       s = s.substring(0,p)+sign+padstr+v+s.substring(p+2);
       digits = 0;
@@ -90,9 +93,35 @@ Regmac.prototype.genmulk = function(m){
   this.pc = lpc;
   this.outreg = this.outreg=='x' ? 'y' : 'x';
 }
+Regmac.prototype.gendivk = function(m){
+  let ipc = this.pc;
+  let opc = ipc;
+  let lpc = ipc+m+2;
+  const name = this.name;
+  for(let k=0; k<m; k++){
+    if(this.outreg == 'x'){
+      this.code += sprintf("%3s  (%3d,0,y)=%s(%3d,0  ,y  );\n", name, opc  , name, lpc);
+      this.code += sprintf("%3s  (%3d,x,y)=%s(%3d,x-1,y  );\n", name, opc++, name, opc);
+    }else{                                             
+      this.code += sprintf("%3s  (%3d,x,0)=%s(%3d,x  ,0  );\n", name, opc  , name, lpc);
+      this.code += sprintf("%3s  (%3d,x,y)=%s(%3d,x  ,y-1);\n", name, opc++, name, opc);
+    }
+  }
+  if(this.outreg == 'x'){
+    this.code += sprintf("%3s  (%3d,x,y)=%s(%3d,0  ,y+1);\n", name, lpc-1, name, ipc);
+  }else{    
+    this.code += sprintf("%3s  (%3d,x,y)=%s(%3d,x+1,0  );\n", name, lpc-1, name, ipc);
+  }
+  this.pc = lpc;
+  this.outreg = this.outreg=='x' ? 'y' : 'x';
+}
+
 window.onload = function(){
   const regmac = new Regmac();
-  regmac.genmulk(3);
+  regmac.gendivk(3);
+  regmac.code += sprintf("//pc=%d\n", regmac.pc);
+  regmac.gendivk(3);
+  regmac.code += sprintf("//pc=%d\n", regmac.pc);
   getelem('debug').innerHTML = regmac.code;
 }
 
